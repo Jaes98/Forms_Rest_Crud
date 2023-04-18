@@ -2,11 +2,14 @@
 
 window.addEventListener("load", initApp);
 
-const endpoint = "https://testings-78997-default-rtdb.firebaseio.com"
+const endpoint = "https://testings-78997-default-rtdb.firebaseio.com/";
 
-function initApp() {
+async function initApp() {
     console.log("Javascript is running!");
-    getPosts();
+    const postits = await getPosts();
+    for (const posts of postits) {
+        showPosts(posts);
+    }
 }
 async function getPosts() {
   const response = await fetch(`${endpoint}/posts.json`);
@@ -27,3 +30,17 @@ function preparePostData(dataObject) {
     console.log(postArray);
     return postArray;
 }
+
+function showPosts(post) {
+    const myHTML = /*html*/ `
+    <div>
+    <h1 id="posttitel">${post.title}</h1>
+    <img src="${post.image}">
+    </div>`;
+
+    document.querySelector("#posts").insertAdjacentHTML("beforeend", myHTML);
+}
+
+// function addPost() {
+    
+// }

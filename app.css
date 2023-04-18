@@ -1,0 +1,19 @@
+.grid_display {
+    display: grid;
+    aspect-ratio: 16/9;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: align-items;
+    gap: 10px;
+    margin: 3px;
+    padding: 5px;
+    font-family: sans-serif;
+}
+#header {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 50px;
+    margin: 6px;
+    background-color: burlywood;
+}
+#posttitel {
+    backdrop-filter: brightness();
+}
