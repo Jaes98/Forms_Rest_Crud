@@ -9,7 +9,7 @@ function initApp() {
     getPosts();
 }
 async function getPosts() {
-  const response = await fetch(`${endpoint}/posts.json`); //posts.json is the data ressource
+  const response = await fetch(`${endpoint}/posts.json`);
   const data = await response.json();
   const posts = preparePostData(data);
   console.log(data);
