@@ -78,3 +78,20 @@ const myHTML = /*html*/ `
 
 document.querySelector("#users").insertAdjacentHTML("beforeend", myHTML);
 }
+
+async function createPost(title, body, image) {
+		const newPost = { 
+				title: title, 
+				body: body,
+				image: image 
+		};
+        const postAsJson = JSON.stringify(newPost);
+        const response = await fetch(`${endpoint}/posts.json`, 
+				{ 
+						method: "POST", 
+						body: postAsJson 
+				}
+		);
+        const data = await response.json();
+        console.log(data);
+}
