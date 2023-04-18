@@ -57,7 +57,7 @@ function preparePostData(dataObject) {
 
 function showPosts(post) {
     const myHTML = /*html*/ `
-    <div>
+    <div class="grid-item">
     <h1 id="posttitel">${post.title}</h1>
     <div id="postbody">${post.body}</div>
     <img src="${post.image}">
@@ -68,7 +68,7 @@ function showPosts(post) {
 
 function showUsers(user) {
 const myHTML = /*html*/ `
-    <div>
+    <div class="grid-item">
     <h1 id="usertitel">${user.title}</h1>
     <div>${user.name}</div>
     <div>${user.mail}</div>
