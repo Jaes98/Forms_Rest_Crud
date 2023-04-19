@@ -6,15 +6,18 @@ const endpoint = "https://testings-78997-default-rtdb.firebaseio.com/";
 
 async function initApp() {
     console.log("Javascript is running!");
-    updateGrid();
+    updateUserGrid();
+    updatePostGrid();
     
 }
 
-async function updateGrid() {
-  const postits = await getPosts();
+async function updatePostGrid() {
+    const postits = await getPosts();
     for (const posts of postits) {
-        showPosts(posts);
-    }
+    showPosts(posts);
+}
+} 
+async function updateUserGrid() {
     const userss = await getUsers();
     for (const users of userss) {  
         showUsers(users);        
@@ -102,7 +105,10 @@ async function createPost(title, body, image) {
 }
 async function deletePost(id) {
   const url = `${endpoint}/posts/${id}.json`;
-  const res = await fetch(url, { method: "DELETE" });
+  const response = await fetch(url, { method: "DELETE" });
+  if (response.ok) {
+    updatePostGrid();
+  }
   console.log(res);
 }
 
@@ -111,7 +117,10 @@ async function updatePost(id, title, image) {
     const postAsJson = JSON.stringify(postToUpdate);
     const url = `${endpoint}/posts/${id}.json`;
 
-    const update = await fetch(url, { method: "PUT", body: postAsJson });
-    const data = await update.json();
-    console.log(data);
+    const response = await fetch(url, { method: "PUT", body: postAsJson });
+    if (response.ok) {
+        const data = await update.json();
+        console.log(data);
+        updatePostGrid();
+    }
 }
