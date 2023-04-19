@@ -6,7 +6,12 @@ const endpoint = "https://testings-78997-default-rtdb.firebaseio.com/";
 
 async function initApp() {
     console.log("Javascript is running!");
-    const postits = await getPosts();
+    updateGrid();
+    
+}
+
+async function updateGrid() {
+  const postits = await getPosts();
     for (const posts of postits) {
         showPosts(posts);
     }
@@ -41,7 +46,7 @@ function prepareUserData(dataObject) {
     }
     console.log(userArray);
     return userArray;
-}
+}d
 
 function preparePostData(dataObject) {
     const postArray = [];
@@ -94,4 +99,19 @@ async function createPost(title, body, image) {
 		);
         const data = await response.json();
         console.log(data);
+}
+async function deletePost(id) {
+  const url = `${endpoint}/posts/${id}.json`;
+  const res = await fetch(url, { method: "DELETE" });
+  console.log(res);
+}
+
+async function updatePost(id, title, image) {
+    const postToUpdate = {title, image};
+    const postAsJson = JSON.stringify(postToUpdate);
+    const url = `${endpoint}/posts/${id}.json`;
+
+    const update = await fetch(url, { method: "PUT", body: postAsJson });
+    const data = await update.json();
+    console.log(data);
 }
