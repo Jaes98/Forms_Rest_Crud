@@ -123,4 +123,7 @@ async function updatePost(id, title, image) {
         console.log(data);
         updatePostGrid();
     }
+    else {
+        console.log("Sorry something went wrong.");
+    }
 }
